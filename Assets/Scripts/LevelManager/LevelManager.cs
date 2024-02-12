@@ -16,10 +16,10 @@ public class LevelManager : MonoBehaviour
    [SerializeField] private int _index;
    private GameObject _currentLevel;
 
-   private List<LevelPieceBase> _spawnedPieces = new List<LevelPieceBase>();
+   [SerializeField] private List<LevelPieceBase> _spawnedPieces = new List<LevelPieceBase>();
    private LevelPieceBasedSetup _currSetup;
 
-   private void Awake()
+   private void Start()
    {
 	   //SpawnNextLevel();
 	   CreateLevelPieces();
@@ -55,29 +55,32 @@ public class LevelManager : MonoBehaviour
 
 		  if(_currSetup != null)
 		  {
-			  _index++;
+				_index++;
 
-			  if (_index >= levelPieceBasedSetups.Count)
-			  {
-				  ResetLevelIndex();
-			  }
+				if (_index >= levelPieceBasedSetups.Count)
+			    {
+					ResetLevelIndex();
+			    }
 		  }
+
 		  _currSetup = levelPieceBasedSetups[_index];
 
-	   for(int i = 0; i < _currSetup.piecesStartNumber; i++)
-	   {
-		   CreateLevelPiece(_currSetup.levelPiecesStart);
-	   }
-	   
-	   for(int i = 0; i < _currSetup.piecesNumber; i++)
-	   {
-		   CreateLevelPiece(_currSetup.levelPieces);
-	   }
-	   for(int i = 0; i < _currSetup.piecesEndNumber; i++)
-	   {
-		   CreateLevelPiece(_currSetup.levelPiecesEnd);
-	   }
-	   ColorManager.Instance.ChangeColorByType(_currSetup.artType);
+		  for(int i = 0; i < _currSetup.piecesStartNumber; i++)
+		  {
+			      CreateLevelPiece(_currSetup.levelPiecesStart);
+		  }
+	  
+		  for(int i = 0; i < _currSetup.piecesNumber; i++)
+		  {
+				  CreateLevelPiece(_currSetup.levelPieces);
+		  }
+
+		  for(int i = 0; i < _currSetup.piecesEndNumber; i++)
+		  {
+				 CreateLevelPiece(_currSetup.levelPiecesEnd);
+		  }
+
+		  ColorManager.Instance.ChangeColorByType(_currSetup.artType);
    }
 
    private void CreateLevelPiece(List<LevelPieceBase> list)
@@ -111,7 +114,7 @@ public class LevelManager : MonoBehaviour
 
    IEnumerator CreateLevelPiecesCoroutine()
    {
-	    _spawnedPieces = new List<LevelPieceBase>();
+	   _spawnedPieces = new List<LevelPieceBase>();
 
 	   for(int i = 0; i < _currSetup.piecesNumber; i++)
 	   {

@@ -9,7 +9,6 @@ public class ArtManager : Singleton<ArtManager>
     {
         TYPE_01,
         TYPE_02,
-        TYPE_03,
         BEACH,
         SNOW
     }
