@@ -32,10 +32,9 @@ public class ItemCollectableCoin :  ItemCollectableBase
 		if(collect)
 		{
 			transform.position = Vector3.Lerp(transform.position, PlayerController.Instance.transform.position, lerp * Time.deltaTime);
-
 			if(Vector3.Distance(transform.position, PlayerController.Instance.transform.position) < minDistance)
 			{
-				 //HideItens();
+				 HideItens();
 				 Destroy(gameObject);
 			}
 		}
